@@ -36,7 +36,7 @@ lazy val `rezepte-stream-api` = (project in file("rezepte-stream-api"))
     libraryDependencies ++= Seq(
       lagomScaladslApi
     )
-  )
+  ).dependsOn(`rezepte-api`)
 
 lazy val `rezepte-stream-impl` = (project in file("rezepte-stream-impl"))
   .enablePlugins(LagomScala)

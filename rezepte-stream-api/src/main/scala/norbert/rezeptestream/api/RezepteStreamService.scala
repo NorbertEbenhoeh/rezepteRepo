@@ -3,6 +3,7 @@ package norbert.rezeptestream.api
 import akka.NotUsed
 import akka.stream.scaladsl.Source
 import com.lightbend.lagom.scaladsl.api.{Service, ServiceCall}
+import norbert.rezepte.model.Rezept
 
 /**
   * The rezepte stream interface.
@@ -12,7 +13,7 @@ import com.lightbend.lagom.scaladsl.api.{Service, ServiceCall}
   */
 trait RezepteStreamService extends Service {
 
-  def stream: ServiceCall[Source[String, NotUsed], Source[String, NotUsed]]
+  def stream: ServiceCall[Source[NotUsed, NotUsed], Source[Vector[Rezept], NotUsed]]
 
   override final def descriptor = {
     import Service._
