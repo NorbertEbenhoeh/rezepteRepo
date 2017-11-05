@@ -7,17 +7,17 @@ scalaVersion in ThisBuild := "2.11.8"
 val macwire = "com.softwaremill.macwire" %% "macros" % "2.2.5" % "provided"
 val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
 
-lazy val `rezepte` = (project in file("."))
-  .aggregate(`rezepte-api`, `rezepte-impl`, `rezepte-stream-api`, `rezepte-stream-impl`)
+lazy val `recipes` = (project in file("."))
+  .aggregate(`recipes-api`, `recipes-impl`, `recipes-stream-api`, `recipes-stream-impl`)
 
-lazy val `rezepte-api` = (project in file("rezepte-api"))
+lazy val `recipes-api` = (project in file("recipes-api"))
   .settings(
     libraryDependencies ++= Seq(
       lagomScaladslApi
     )
   )
 
-lazy val `rezepte-impl` = (project in file("rezepte-impl"))
+lazy val `recipes-impl` = (project in file("recipes-impl"))
   .enablePlugins(LagomScala)
   .settings(
     libraryDependencies ++= Seq(
@@ -29,16 +29,16 @@ lazy val `rezepte-impl` = (project in file("rezepte-impl"))
     )
   )
   .settings(lagomForkedTestSettings: _*)
-  .dependsOn(`rezepte-api`)
+  .dependsOn(`recipes-api`)
 
-lazy val `rezepte-stream-api` = (project in file("rezepte-stream-api"))
+lazy val `recipes-stream-api` = (project in file("recipes-stream-api"))
   .settings(
     libraryDependencies ++= Seq(
       lagomScaladslApi
     )
-  ).dependsOn(`rezepte-api`)
+  ).dependsOn(`recipes-api`)
 
-lazy val `rezepte-stream-impl` = (project in file("rezepte-stream-impl"))
+lazy val `recipes-stream-impl` = (project in file("recipes-stream-impl"))
   .enablePlugins(LagomScala)
   .settings(
     libraryDependencies ++= Seq(
@@ -47,4 +47,4 @@ lazy val `rezepte-stream-impl` = (project in file("rezepte-stream-impl"))
       scalaTest
     )
   )
-  .dependsOn(`rezepte-stream-api`, `rezepte-api`)
+  .dependsOn(`recipes-stream-api`, `recipes-api`)
