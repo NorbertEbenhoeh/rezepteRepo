@@ -31,12 +31,12 @@ class RecipesServiceImpl(persistentEntityRegistry: PersistentEntityRegistry) ext
     // Look up the rezepte entity
     val ref = persistentEntityRegistry.refFor[RecipeEntity]("recipes")
 
-    ref.ask(GetRecipes("recipes"))
+    ref.ask(ReadRecipesCommand("recipes"))
   }
 
   override def postRecipe = ServiceCall { recipe =>
     val ref = persistentEntityRegistry.refFor[RecipeEntity]("recipes")
 
-    ref.ask(AddRecipe(recipe))
+    ref.ask(CreateRecipeCommand(recipe))
   }
 }

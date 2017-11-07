@@ -5,8 +5,7 @@ import com.lightbend.lagom.scaladsl.api.broker.Topic
 import com.lightbend.lagom.scaladsl.api.broker.kafka.{KafkaProperties, PartitionKeyStrategy}
 import com.lightbend.lagom.scaladsl.api.transport.Method
 import com.lightbend.lagom.scaladsl.api.{Service, ServiceCall}
-import norbert.recipes.model.{Recipe, RecipeCreated}
-import play.api.libs.json.{Format, Json}
+import norbert.recipes.model.{CreateRecipe, Recipe, RecipeCreated}
 
 object RecipeService {
   val TOPIC_NAME = "recipes"
@@ -20,9 +19,9 @@ object RecipeService {
   */
 trait RecipeService extends Service {
 
-  def getRecipes: ServiceCall[NotUsed, Vector[Recipe]]
+  def getRecipes: ServiceCall[NotUsed, Set[Recipe]]
 
-  def postRecipe : ServiceCall[Recipe, Done]
+  def postRecipe : ServiceCall[CreateRecipe, Done]
 
   /**
     * This gets published to Kafka.
